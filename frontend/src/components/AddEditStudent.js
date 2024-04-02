@@ -87,6 +87,7 @@ const AddEditStudent = () => {
         </div>
         <button type="submit">Save Student</button>
       </form>
+      <button type="button" onClick={() => navigate('/')}>Student List</button>
     </div>
   );
 };
