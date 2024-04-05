@@ -1,33 +1,45 @@
-// server.js
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
-const studentRoutes = require('./routes/students');
-
-// Use routes
-app.use('/students', studentRoutes);
-
-// Environment variables
-require('dotenv').config();
+const { MongoClient } = require('mongodb');
 
 const app = express();
+const port = 3000;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+// MongoDB connection URL
+const mongoUrl = 'mongodb://localhost:27017';
+// Database name
+const dbName = 'StudentManagementSystem';
 
-// Define routes
-app.get('/', (req, res) => {
-  res.send('Student Management System Backend');
+// Create a new MongoClient
+const client = new MongoClient(mongoUrl);
+
+async function connectDb() {
+  try {
+    // Connect the client to the server
+    await client.connect();
+    console.log("Connected successfully to MongoDB");
+
+    // Specify the database you want to access
+    const db = client.db(dbName);
+
+    return db;
+  } catch (err) {
+    console.error(err);
+    // Ensure the client will close when you finish/error
+    await client.close();
+  }
+}
+
+// Example route
+app.get('/students', async (req, res) => {
+  const db = await connectDb();
+  const collection = db.collection('Students');
+  const students = await collection.find({}).toArray();
+  res.json(students);
 });
 
-// Listen on a port
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});

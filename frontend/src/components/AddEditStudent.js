@@ -4,52 +4,58 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
-const AddEditStudent = () => {
-  const [formData, setFormData] = useState({
+//submits http requests to defined endpoints using axios methos
+
+function AddEditStudent() {
+  const [formData, setFormData] = useState({// object
     name: '',
     email: '',
     course: ''
   });
-  const { id } = useParams();
-  const navigate = useNavigate();
+
+
+  const { id } = useParams(); //access params from current route (url) and grabs the id param
+  const navigate = useNavigate(); //change route
+
+
   useEffect(() => {
     if (id) {
       // Fetch the existing student details if in edit mode
-      const fetchStudentDetails = async () => {
+      async function fetchStudentDetails() {
         try {
-          const response = await axios.get(`/students/${id}`);
-          setFormData(response.data);
+          const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`); // http get request for student id
+          setFormData(response.data); // update formData with existing student data
         } catch (error) {
           console.error("Could not fetch student details", error);
         }
-      };
+      }
       fetchStudentDetails();
     }
-  }, [id]);
+  }, [id]);// [id] - runs every time the id value changes
 
-  const handleChange = (event) => {
+  function handleChange(event) { //event object is generated on fourm submission
     const { name, value } = event.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
     }));
-  };
+  }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  async function handleSubmit(event) {
+    event.preventDefault(); // prevents the default behavior of form submission, which typically involves reloading the page
     try {
       if (id) {
         // Update the student if in edit mode
-        await axios.put(`/students/${id}`, formData);
+        await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, formData);
       } else {
         // Add a new student if in add mode
-        await axios.post('/students', formData);
+        await axios.post('https://jsonplaceholder.typicode.com/posts/', formData);
       }
       navigate('/'); // Redirect to the student list view
     } catch (error) {
       console.error("Could not save student", error);
     }
-  };
+  }
 
   return (
     <div>
@@ -62,8 +68,7 @@ const AddEditStudent = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            required
-          />
+            required />
         </div>
         <div>
           <label>Email:</label>
@@ -72,8 +77,7 @@ const AddEditStudent = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
-          />
+            required />
         </div>
         <div>
           <label>Course:</label>
@@ -82,14 +86,13 @@ const AddEditStudent = () => {
             name="course"
             value={formData.course}
             onChange={handleChange}
-            required
-          />
+            required />
         </div>
         <button type="submit">Save Student</button>
       </form>
       <button type="button" onClick={() => navigate('/')}>Student List</button>
     </div>
   );
-};
+}
 
 export default AddEditStudent;

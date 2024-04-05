@@ -6,6 +6,12 @@ import AddEditStudent from './components/AddEditStudent';
 import DeleteStudent from './components/DeleteStudent';
 
 
+// front end connects to api
+  // tester api using json ting
+
+// api connects to backend 
+// you have the example api that you made 1.5 years ago 😭
+
 function App() {
   return (
     <Router>
