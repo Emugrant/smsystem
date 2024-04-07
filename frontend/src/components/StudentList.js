@@ -13,9 +13,9 @@ const StudentList = () => {
     const fetchStudents = async () => {// async keyword means that function will always return a promise(try and catch, return value or error)
       try {
 
-       // const response = await axios.get('/http://localhost:3000/students'); // async HTTP GET request to '/students' endpoint using axios.
+        const response = await axios.get('/api/data'); // async HTTP GET request to '/students' endpoint using axios.
 
-         const response = await axios.get('https://jsonplaceholder.typicode.com/posts'); // testing output with json placeholder
+        //const response = await axios.get('https://jsonplaceholder.typicode.com/posts'); // testing output with json placeholder
 
                                                       // 'await' keyword is used to pause execution until promis resolved by 'axios.get()' or is rejected
                                                       // once promise is resolved, server response stored in variable 'response'
