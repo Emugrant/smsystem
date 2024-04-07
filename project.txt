@@ -1,0 +1,27 @@
+Mongo Ting
+
+8:50
+npm install express --save
+ - Might need to install --save
+ 
+ By default, express app comes with security to disable requests coming from different domains / ports.
+ npm install cors
+ to overide this, we need to install cors (not recommended in production, should only whitelist familiar services)
+ npm install multer (read stored request data)
+ 
+ donnie is using mongodb@4.1.0
+ 
+11:00
+ https://youtu.be/mDgKjb5eWPk?t=535
+
+
+
+ 
+
+
+- [ ] Test that the database connection is working on vscode
+	- [ ] Google how to test mongoDB connection with nodejs
+	
+- [ ] Work out how to setup the api + endpoints
+
+- [ ] Learn how to use HTTP requests
