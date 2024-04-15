@@ -7,6 +7,8 @@ const multer = require ("multer")
 const MongoClient = require ("mongodb").MongoClient;
 
 const app = express();
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 const port = 3001;
 const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -26,6 +28,7 @@ app.listen(port, () => {
 app.get('/api/students/list-of-students', (request,response)=>{
     database.collection("students").find({}).toArray((error,result)=>{
         response.send(result);
+        
     })
 })
 
@@ -53,9 +56,10 @@ app.put('/api/students/update-students',multer().none(),(request,response)=>{
 });
     
 
-app.delete('/api/students/delete-students',multer().none(),(request,response)=>{
+app.delete('/api/students/delete-students',(request,response)=>{
+   
     database.collection("students").deleteOne({
-        id:request.body.id
+       id:request.body.id
     });
     response.send("Student Deleted");
 });
