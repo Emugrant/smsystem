@@ -16,6 +16,7 @@ var databaseName = "studentmanagementsystem";
 
 var database; 
 
+//This method starts a server and begins listening for incoming connections on a specified port.
 app.listen(port, () => {
     MongoClient.connect(uri, (error,client) => {
         database = client.db(databaseName);
