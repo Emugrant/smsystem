@@ -1,6 +1,8 @@
 //gazellehunter24
 //f7y2YWbvDzCqiB4V
 
+//https://expressjs.com/en/5x/api.html#app.get
+
 const express = require('express');
 var cors = require("cors");
 const multer = require ("multer")
@@ -16,6 +18,13 @@ var databaseName = "studentmanagementsystem";
 
 var database; 
 
+//https://expressjs.com/en/starter/basic-routing.html
+// ### _Routing basics:_
+//app.METHOD(PATH, HANDLER)
+    // METHOD is an HTTP request method, in lowercase.
+    // PATH is a path on the server.
+    // HANDLER is the function executed when the route is matched.
+
 //This method starts a server and begins listening for incoming connections on a specified port.
 app.listen(port, () => {
     MongoClient.connect(uri, (error,client) => {
@@ -26,6 +35,8 @@ app.listen(port, () => {
     });
 });
 
+//app.get(path, callback [, callback ...])
+//Routes HTTP GET requests to the specified path with the specified callback functions.
 app.get('/api/students/list-of-students', (request,response)=>{
     database.collection("students").find({}).toArray((error,result)=>{
         response.send(result);
@@ -33,6 +44,7 @@ app.get('/api/students/list-of-students', (request,response)=>{
     })
 })
 
+// app.post(path, callback [, callback ...])
 app.post('/api/students/add-students',multer().none(),(request,response)=>{
     database.collection("students").count({},function(error,numOfDocs){
         database.collection("students").insertOne({
