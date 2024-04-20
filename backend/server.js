@@ -86,15 +86,26 @@ app.post('/api/students/add-students',multer().none(),(request,response)=>{
 
 //The count function in MongoDB is used to count the number of documents that match a certain condition. Here, it's used to count all documents in the students collection ({} matches all documents) to generate a new id for a newly added student.
 
-app.put('/api/students/update-students',multer().none(),(request,response)=>{
-    database.collection("students").updateOne({
-        id:request.body.id
-    },{ $set:{
-        name:request.body.name,
-        email:request.body.email,
-        course:request.body.course,
-    }});
-    response.send("Student Updated");
+app.put('/api/students/update-student/:_id', (req, res) => {
+    const studentId = req.params._id;  // Extracting the ID from the request parameters
+    const updateData = {
+        name: req.body.name,
+        email: req.body.email,
+        course: req.body.course
+    };
+
+    database.collection("students").updateOne(
+        { _id: ObjectId(studentId) }, // Filter document by _id to find the specific student
+        { $set: updateData }  // Use the $set operator to update the student document
+    ).then(result => {
+        if (result.matchedCount === 0) {
+            res.status(404).send("No student found with that ID");  // No document matches the provided _id
+        } else {
+            res.send("Student updated successfully");  // Successfully updated the document
+        }
+    }).catch(error => {
+        res.status(500).send("Error updating student: " + error);  // Handling potential errors
+    });
 });
 
 // The $set operator in a MongoDB update operation specifies the fields to be updated in the document. It replaces the value of a field with the specified value without modifying any other fields in the document. In this code, it updates name, email, and course fields of a student document.
