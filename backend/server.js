@@ -7,8 +7,9 @@ const express = require('express');
 var cors = require("cors");
 const multer = require ("multer")
 const MongoClient = require ("mongodb").MongoClient;
-
+const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
+
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors()); //Applies CORS middleware to allow cross-origin requests. (from differing ip addresses)
@@ -43,8 +44,6 @@ app.get('/api/students/all-students', (request,response)=>{
         
     })
 })
-
-const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 
 // New route to get a student by _id
 app.get('/api/students/:_id', (req, res) => {
