@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+const datasource = 'http://localhost:3001';
+
 
 //submits http requests to defined endpoints using axios methos
 
@@ -12,6 +14,10 @@ function AddEditStudent() {
     email: '',
     course: ''
   });
+
+  // - [ ] add 'id' param
+  //- [ ] add '_id' param
+  // - [ ] chane 'id' to 'studentID'
 
 
   const { id } = useParams(); //access params from current route (url) and grabs the id param
@@ -23,18 +29,18 @@ function AddEditStudent() {
       // Fetch the existing student details if in edit mode
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`); // http get request for student id
+          const response = await axios.get( datasource + `/api/students/all-students/${id}` ); // http get request for student id
           setFormData(response.data); // update formData with existing student data
         } catch (error) {
-          console.error("Could not fetch student details", error);
+          console.error("Could not fetch student details", error); // - [ ] Can i use console.log instead of console.error. what is console.error()
         }
       }
       fetchStudentDetails();
     }
   }, [id]);// [id] - runs every time the id value changes
 
-  function handleChange(event) { //event object is generated on fourm submission
-    const { name, value } = event.target;
+  function handleChange(event) { //event object is generated on fourm submission, 'event' contains information about the event that occurred
+    const { name, value } = event.target; // what is an event object? what is event.target? event.target is the element that triggered the event
     setFormData(prevState => ({
       ...prevState,
       [name]: value
