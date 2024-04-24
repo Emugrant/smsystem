@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors()); //Applies CORS middleware to allow cross-origin requests. (from differing ip addresses)
+
 const port = 3001;
 const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const databaseName = "studentmanagementsystem";
