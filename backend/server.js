@@ -1,10 +1,5 @@
-//gazellehunter24
-//f7y2YWbvDzCqiB4V
-
-//https://expressjs.com/en/5x/api.html#app.get
-
 const express = require('express');
-var cors = require("cors");
+const cors = require("cors");
 const multer = require ("multer")
 const MongoClient = require ("mongodb").MongoClient;
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
@@ -15,10 +10,13 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cors()); //Applies CORS middleware to allow cross-origin requests. (from differing ip addresses)
 const port = 3001;
 const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-var databaseName = "studentmanagementsystem";
+const databaseName = "studentmanagementsystem";
+//username: gazellehunter24
+//password: f7y2YWbvDzCqiB4V
+//cluster0: isp2kui.mongodb.net
 
-var database; 
 
+//https://expressjs.com/en/5x/api.html#app.get
 //https://expressjs.com/en/starter/basic-routing.html
 // ### _Routing basics:_
 //app.METHOD(PATH, HANDLER)
