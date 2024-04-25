@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require("cors");
 const multer = require ("multer")
-const MongoClient = require ("mongodb").MongoClient;
+const MongoClient = require ("mongodb").MongoClient; //mongodb connection driver, returns object with bare variables
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
 
@@ -17,23 +17,21 @@ const databaseName = "studentmanagementsystem";
 //cluster0: isp2kui.mongodb.net
 
 
-//https://expressjs.com/en/5x/api.html#app.get
-//https://expressjs.com/en/starter/basic-routing.html
-// ### _Routing basics:_
-//app.METHOD(PATH, HANDLER)
-    // METHOD is an HTTP request method, in lowercase.
-    // PATH is a path on the server.
-    // HANDLER is the function executed when the route is matched.
+//https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
+
+//instantiate mongodb connection
 
 //This method starts a server and begins listening for incoming connections on a specified port.
-app.listen(port, () => {
-    MongoClient.connect(uri, (error,client) => {
-        database = client.db(databaseName);
+app.listen(port, () => { // app.listen starts express server
+
+    MongoClient.connect(uri, (error,client) => { // starts connection
+        database = client.db(databaseName); // client object with bare variables
         console.log("MongoDB Connection Succesful");
         console.log(`Backend server is running on http://localhost:${port}`);
-
     });
 });
+//https://expressjs.com/en/5x/api.html#app.listen
+
 
 //app.get(path, callback [, callback ...])
 //Routes HTTP GET requests to the specified path with the specified callback functions.
