@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const multer = require ("multer")
 const MongoClient = require ("mongodb").MongoClient; //mongodb connection driver, returns object with bare variables
-const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
+const { ObjectId, Int32 } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
 
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
@@ -32,7 +32,14 @@ mongoose.connect(uri).then( () => {
 
 //mongoose is a smiliar ting but it has it's on schemas that are based on the db scheema, 
 
+const studentSchema = new mongoose.Schema({
+    id: Int32,
+    name: String,
+    email: String,
+    course: String
+});
 
+//https://youtu.be/30p9QfybWZg?t=507
 
 // //This method starts a server and begins listening for incoming connections on a specified port.
 // app.listen(port, () => {
