@@ -51,10 +51,10 @@ function AddEditStudent() {
     try {
       if (id) {
         // Update the student if in edit mode
-        await axios.put(`/api/students/update-student/${id}`, formData);
+        await axios.put(datasource + `/api/students/update-student/${id}`, formData);
       } else {
         // Add a new student if in add mode
-        await axios.post('http://localhost:3001/api/students/add-students', formData);
+        await axios.post(datasource + '/api/students/add-students', formData);
       }
       navigate('/'); // Redirect to the student list view
     } catch (error) {
