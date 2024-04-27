@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
 
@@ -52,10 +51,10 @@ function AddEditStudent() {
     try {
       if (id) {
         // Update the student if in edit mode
-        await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, formData);
+        await axios.put(`/api/students/update-student/${id}`, formData);
       } else {
         // Add a new student if in add mode
-        await axios.post('https://jsonplaceholder.typicode.com/posts/', formData);
+        await axios.post('http://localhost:3001/api/students/add-students', formData);
       }
       navigate('/'); // Redirect to the student list view
     } catch (error) {
