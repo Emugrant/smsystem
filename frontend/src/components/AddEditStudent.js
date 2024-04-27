@@ -25,10 +25,10 @@ function AddEditStudent() {
 
   useEffect(() => {
     if (id) {
-      // Fetch the existing student details if in edit mode
+      // Only fetch details if 'id' is not null, indicating edit mode
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get( datasource + `/api/students/all-students/${id}` ); // http get request for student id
+          const response = await axios.get( datasource + `/api/students/${id}` ); // http get request for student id
           setFormData(response.data); // update formData with existing student data
         } catch (error) {
           console.error("Could not fetch student details", error); // - [ ] Can i use console.log instead of console.error. what is console.error()
