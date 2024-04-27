@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const datasource = 'http://localhost:3001';
 
 
-//submits http requests to defined endpoints using axios methos
+//submits http requests to defined endpoints using axios methods
 
 function AddEditStudent() {
   const [formData, setFormData] = useState({// object
