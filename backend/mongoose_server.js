@@ -30,7 +30,7 @@ mongoose.connect(uri).then( () => {
 })
 .catch((error)=>console.log(error));
 
-//mongoose is a smiliar ting but it has it's on schemas that are based on the db scheema,
+//mongoose is a smiliar ting but it has it's on schemas that are based on the db scheema, 
 
 const studentSchema = new mongoose.Schema({
     id: Int32,
