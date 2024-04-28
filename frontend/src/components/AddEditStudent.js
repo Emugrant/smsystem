@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
 
 
-//submits http requests to defined endpoints using axios methos
+//submits http requests to defined endpoints using axios methods
 
 function AddEditStudent() {
   const [formData, setFormData] = useState({// object
@@ -26,10 +25,10 @@ function AddEditStudent() {
 
   useEffect(() => {
     if (id) {
-      // Fetch the existing student details if in edit mode
+      // Only fetch details if 'id' is not null, indicating edit mode
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get( datasource + `/api/students/all-students/${id}` ); // http get request for student id
+          const response = await axios.get( datasource + `/api/students/${id}` ); // http get request for student id
           setFormData(response.data); // update formData with existing student data
         } catch (error) {
           console.error("Could not fetch student details", error); // - [ ] Can i use console.log instead of console.error. what is console.error()
@@ -52,10 +51,10 @@ function AddEditStudent() {
     try {
       if (id) {
         // Update the student if in edit mode
-        await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, formData);
+        await axios.put(datasource + `/api/students/update-student/${id}`, formData);
       } else {
         // Add a new student if in add mode
-        await axios.post('https://jsonplaceholder.typicode.com/posts/', formData);
+        await axios.post(datasource + '/api/students/add-students', formData);
       }
       navigate('/'); // Redirect to the student list view
     } catch (error) {
