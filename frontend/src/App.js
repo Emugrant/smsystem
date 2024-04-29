@@ -1,15 +1,16 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import StudentList from './components/StudentList';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AddEditStudent from './components/AddEditStudent';
 import DeleteStudent from './components/DeleteStudent';
+import StudentList from './components/StudentList';
 
 
 // front end connects to api
   // tester api using json ting
 
 // api connects to backend 
+
 // you have the example api that you made 1.5 years ago 😭
 
 function App() {
