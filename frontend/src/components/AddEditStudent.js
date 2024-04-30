@@ -4,9 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
 
-
-//submits http requests to defined endpoints using axios methods
-
 function AddEditStudent() {
   const [formData, setFormData] = useState({// object
     name: '',
@@ -14,24 +11,20 @@ function AddEditStudent() {
     course: ''
   });
 
-  // - [ ] add 'id' param
-  //- [ ] add '_id' param
-  // - [ ] chane 'id' to 'studentID'
-
-
-  const { id } = useParams(); //access params from current route (url) and grabs the id param
+  // - [ ] in depth, what do these do?
+  const { id } = useParams(); //access current route (url) and grabs the id param
   const navigate = useNavigate(); //change route
 
 
   useEffect(() => {
-    if (id) {
-      // Only fetch details if 'id' is not null, indicating edit mode
+    if (id) {       // Only fetch details if 'id' is not null, indicating edit mode
       async function fetchStudentDetails() {
         try {
           const response = await axios.get( datasource + `/api/students/${id}` ); // http get request for student id
           setFormData(response.data); // update formData with existing student data
+          // - [ ] does response.data contain all data from endpoint?. How does setFormData() know what information to store and discard?
         } catch (error) {
-          console.error("Could not fetch student details", error); // - [ ] Can i use console.log instead of console.error. what is console.error()
+          console.error("Could not fetch student details", error); // consle.error() - is red ;)
         }
       }
       fetchStudentDetails();
@@ -40,7 +33,7 @@ function AddEditStudent() {
 
   function handleChange(event) { //event object is generated on fourm submission, 'event' contains information about the event that occurred
     const { name, value } = event.target; // what is an event object? what is event.target? event.target is the element that triggered the event
-    setFormData(prevState => ({
+    setFormData(prevState => ({ // - [ ] What in tarnation is going on here?
       ...prevState,
       [name]: value
     }));
