@@ -17,12 +17,12 @@ function AddEditStudent() {
 
 
   useEffect(() => {
-    if (id) {       // Only fetch details if 'id' is not null, indicating edit mode
+    if (id) { // if 'id' is truthy (not null), indicating edit mode, fetch student details.
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get( datasource + `/api/students/${id}` ); // http get request for student id
-          setFormData(response.data); // update formData with existing student data
-          // - [ ] does response.data contain all data from endpoint?. How does setFormData() know what information to store and discard?
+          const response = await axios.get( datasource + `/api/students/${id}` );//https://axios-http.com/docs/res_schema
+          console.log(response);//Object { _id: "662c4e501393a34f797f7a80", id: "3", name: "Dave1", email: "dave1@gmail.com", course: "Dave Squad" }
+          setFormData(response.data); // Sets form data to the overlapping response data, excluding datafields not in the state object.
         } catch (error) {
           console.error("Could not fetch student details", error); // consle.error() - is red ;)
         }
@@ -31,13 +31,10 @@ function AddEditStudent() {
     }
   }, [id]);// [id] - runs every time the id value changes
 
-  function handleChange(event) { //event object is generated on fourm submission, 'event' contains information about the event that occurred
-    const { name, value } = event.target; // what is an event object? what is event.target? event.target is the element that triggered the event
-    setFormData(prevState => ({ // - [ ] What in tarnation is going on here?
-      ...prevState,
-      [name]: value
-    }));
-  }
+  function handleChange(event) {                                      //event object is generated on fourm submission, 'event' contains information about the event that occurred
+    const { name, value } = event.target;                             // event.target is the element that triggered the event. In this case, the input field that was changed.
+    setFormData( prevState => ({ ...prevState,[name]: value }));      //'...' spread operator spreads iterables for concantination and overwriting. 
+  }                                                                   //here, the spread operator replaces the value of the key 'name' with the value of the input field
 
   async function handleSubmit(event) {
     event.preventDefault(); // prevents the default behavior of form submission, which typically involves reloading the page
