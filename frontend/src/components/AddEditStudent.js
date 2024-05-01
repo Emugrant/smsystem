@@ -10,9 +10,7 @@ function AddEditStudent() {
     email: '',
     course: ''
   });
-
-  // - [ ] in depth, what do these do?
-  const { id } = useParams(); //access current route (url) and grabs the id param
+  const { id } = useParams(); //access current route (url) and grabs the id param 
   const navigate = useNavigate(); //change route
 
 
@@ -20,11 +18,11 @@ function AddEditStudent() {
     if (id) { // if 'id' is truthy (not null), indicating edit mode, fetch student details.
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get( datasource + `/api/students/${id}` );//https://axios-http.com/docs/res_schema
-          console.log(response);//Object { _id: "662c4e501393a34f797f7a80", id: "3", name: "Dave1", email: "dave1@gmail.com", course: "Dave Squad" }
-          setFormData(response.data); // Sets form data to the overlapping response data, excluding datafields not in the state object.
+          const response = await axios.get( datasource + `/api/students/${id}` );   //https://axios-http.com/docs/res_schema
+          console.log(response);                              //Object { _id: "662c4e501393a34f797f7a80", id: "3", name: "Dave1", email: "dave1@gmail.com", course: "Dave Squad" }
+          setFormData(response.data);                         // Sets form data to the overlapping response data, excluding datafields not in the state object.
         } catch (error) {
-          console.error("Could not fetch student details", error); // consle.error() - is red ;)
+          console.error("Could not fetch student details", error); // 'consle.error()' instead of 'console.log' because error is red ;)
         }
       }
       fetchStudentDetails();
@@ -37,10 +35,9 @@ function AddEditStudent() {
   }                                                                   //here, the spread operator replaces the value of the key 'name' with the value of the input field
 
   async function handleSubmit(event) {
-    event.preventDefault(); // prevents the default behavior of form submission, which typically involves reloading the page
-    try {
-      if (id) {
-        // Update the student if in edit mode
+    event.preventDefault(); // prevents the default behavior of form submission, specifically reloading the page
+    try { 
+      if (id) {//if in edit mode
         await axios.put(datasource + `/api/students/update-student/${id}`, formData);
       } else {
         // Add a new student if in add mode
