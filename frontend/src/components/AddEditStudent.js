@@ -51,7 +51,9 @@ function AddEditStudent() {
 
   return (
     <div>
-      <h2>{id ? 'Edit' : 'Add'} Student</h2>
+       <h2>{id ? 'Edit' : 'Add'} Student</h2> 
+       {/* <h2>condition ?(conditional operator) expressionIfTruthy : expressionIfFalsy </h2> */}
+       
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
