@@ -1,5 +1,4 @@
 const express = require('express');
-const MongoClient = require ("mongodb").MongoClient; //mongoose alt
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
 const mongoose = require('mongoose');
@@ -28,14 +27,12 @@ async function main() {
 };
 main();
 
-//Routes HTTP GET requests to the specified path with the specified callback functions.
 app.get('/api/students/all-students', (request,response)=>{
     database.collection("students").find({}).toArray((error,result)=>{
         response.send(result);        
     })
 })
 
-// New route to get a student by _id
 app.get('/api/students/:_id', (req, res) => {
     const studentId = req.params._id; // Get the _id from the URL parameter
 
@@ -89,9 +86,6 @@ app.put('/api/students/update-student/:_id', (req, res) => {
 // The $set operator in a MongoDB update operation specifies the fields to be updated in the document. It replaces the value of a field with the specified value without modifying any other fields in the document. In this code, it updates name, email, and course fields of a student document.
     
 
-// - [ ] what is an id parameter
-// :id route parameter is used to specify the id of the student to be deleted. The request.params object is used to access route parameters in Express. 
-// The deleteOne method is used to delete a single document that matches the specified filter (in this case, the student id).
 app.delete('/api/students/delete-students/:id', (request, response) => {
     const studentId = request.params.id;
     database.collection("students").deleteOne({ _id: new require('mongodb').ObjectId(studentId) })
