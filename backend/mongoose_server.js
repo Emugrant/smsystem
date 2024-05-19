@@ -4,6 +4,7 @@ const multer = require ("multer")// - [ ] what is multer
 const MongoClient = require ("mongodb").MongoClient;
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
+const mongoose = require('mongoose');
 
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -16,15 +17,20 @@ const databaseName = "studentmanagementsystem";
 //password: f7y2YWbvDzCqiB4V
 //cluster0: isp2kui.mongodb.net
 
-//This method starts a server and begins listening for incoming connections on a specified port.
-app.listen(port, () => {
-    MongoClient.connect(uri, (error,client) => {
-        database = client.db(databaseName);
-        console.log("MongoDB Connection Succesful");
-        console.log(`Backend server is running on http://localhost:${port}`);
+async function main() {
+    try {
+        await mongoose.connect(uri + "/" + databaseName);
+        console.log("MongoDB Connection Successful");
+        app.listen(port, () => {
+            console.log(`Backend server is running on http://localhost:${port}`);
+        });
+    }
+    catch (error) {
+        console.error("MongoDB Connection Failed: ", error);
+    }
+}
 
-    });
-});
+main();
 
 //Routes HTTP GET requests to the specified path with the specified callback functions.
 app.get('/api/students/all-students', (request,response)=>{
