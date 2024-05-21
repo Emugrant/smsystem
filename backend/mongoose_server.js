@@ -2,18 +2,18 @@ const express = require('express');
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
 const mongoose = require('mongoose');
+// const cors = require('cors');
 
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cors()); //Applies CORS middleware to allow cross-origin requests. (from differing ip addresses)
+// app.use(cors()); //Applies CORS middleware to allow cross-origin requests. (from differing ip addresses)
 
 const port = 3001;
-const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodbawait+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const databaseName = "studentmanagementsystem";
 //username: gazellehunter24
 //password: f7y2YWbvDzCqiB4V
 //cluster0: isp2kui.mongodb.net
-
 app.listen(port, () => {
     try{
         mongoose.connect(uri + "/" + databaseName);
@@ -41,9 +41,12 @@ const student1 = new Student({ name: 'John Doe', email: 'example@gmail.com', cou
 
 
 studentSchema.methods.getStudentName = function () {
-    return this.name : "No name";
+    return this.name;
 };
 
+studentSchema.methods.getStudentName(student1);
+
+student1.save(); // save the student1 document to the database
 
 
 
