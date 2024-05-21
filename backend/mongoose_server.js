@@ -11,6 +11,7 @@ const databaseName = "studentmanagementsystem";
 
 
 //https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
+//https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
 
 
 //instantiate mongodb connection
@@ -39,19 +40,6 @@ const studentSchema = new mongoose.Schema({
 //https://youtu.be/30p9QfybWZg?t=507
 
 const studentModel = mongoose.model("students", studentSchema);
-
-// //This method starts a server and begins listening for incoming connections on a specified port.
-// app.listen(port, () => {
-
-//     MongoClient.connect(uri, (error,client) => {
-//         database = client.db(databaseName);
-//         console.log("MongoDB Connection Succesful");
-//         console.log(`Backend server is running on http://localhost:${port}`);
-//     });
-// });
-// //https://expressjs.com/en/5x/api.html#app.listen
-
-
 //app.get(path, callback [, callback ...])
 //Routes HTTP GET requests to the specified path with the specified callback functions.
 app.get('/api/students/all-students', async (request,response) => {
