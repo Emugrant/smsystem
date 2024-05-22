@@ -1,14 +1,9 @@
-
 //https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
 //https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
 
-
-
 const express = require('express');
-const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
 const mongoose = require('mongoose');
-// const cors = require('cors');
 
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -31,15 +26,12 @@ mongoose // this block isn't running. Is there womething wrong with imports or s
     .then(() => { // What does '.then()' do???
         console.log('App connected to database;');
         app.listen(port, () => {
-            console.log(`App is listening on port: ${port}`)
-            try{
-                mongoose.connect(uri + "/" + databaseName);
-                console.log("MongoDB Connection Successful");
-                console.log(`Backend server is running on http://localhost:${port}`);
-            }catch(error){
-                console.error("MongoDB Connection Failed: ", error);
-            }
+            console.log(`App is listening on port: ${port}`);
         });
+    })
+    .catch((error) => {
+        console.error("MongoDB Connection Failed: " + error);
+    });
 // 9:10
 
 
