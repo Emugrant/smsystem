@@ -1,3 +1,9 @@
+
+//https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
+//https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
+
+
+
 const express = require('express');
 const { ObjectId } = require('mongodb');  // Import ObjectId from mongodb to handle conversion of string _id to MongoDB's ObjectId
 const app = express();
@@ -11,10 +17,6 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 const port = 3001;
 const uri = "mongodbawait+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 const databaseName = "studentmanagementsystem";
-
-
-//https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
-//https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
 
 
 
