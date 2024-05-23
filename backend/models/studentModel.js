@@ -18,6 +18,8 @@ const studentSchema = new mongoose.Schema({
 
 export const Student = mongoose.model('Student', { name: String});
 
+export default Student;
+
 
 
 // from documentation:
