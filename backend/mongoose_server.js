@@ -49,6 +49,16 @@ app.post('/students', async (request, response) => {
 
 })
 
+app.get('/students', async (request, response) => {
+    try {
+        const students = await Student.find({});
+        return response.status(200).json(students);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).send({message: error.message})
+    }
+});
+
                                             
 mongoose // this block isn't running. Is there womething wrong with imports or syntax?
     .connect(uriWithCollectionName)
