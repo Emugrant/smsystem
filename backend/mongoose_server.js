@@ -4,12 +4,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { Student } from './models/studentModel.js';
-mvm
+
 
 const port = 3001;
 const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
-// const databaseName = "studentmanagementsystem";mvm
+// const databaseName = "studentmanagementsystem";
 
 const app = express();
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
