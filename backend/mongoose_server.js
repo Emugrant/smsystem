@@ -1,5 +1,6 @@
 //https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
 //https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
+//14:40 
 
 import express from 'express';
 import mongoose from 'mongoose';
@@ -70,5 +71,4 @@ mongoose // this block isn't running. Is there womething wrong with imports or s
     .catch((error) => {
         console.error("MongoDB Connection Failed: " + error);
     });
-//12:20
 
