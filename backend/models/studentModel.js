@@ -1,4 +1,3 @@
-//10:32
 import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
@@ -14,9 +13,9 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-});
+}, { versionKey: false });
 
-export const Student = mongoose.model('Student', { name: String});
+export const Student = mongoose.model('Student', studentSchema);
 
 export default Student;
 
