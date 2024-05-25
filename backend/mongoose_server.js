@@ -49,15 +49,32 @@ app.post('/students', async (request, response) => {
 
 })
 
-app.get('/students', async (request, response) => {
+// get all students
+app.get('/students', async (request, response) => { 
     try {
-        const students = await Student.find({});
+        const students = await Student.find();
         return response.status(200).json(students);
     } catch (error) {
         console.error(error.message);
         response.status(500).send({message: error.message})
     }
 });
+
+// get student by id
+app.get('/student/:id', async (request, response) => { //':' signifies param
+    try {
+        const { id } = request.params; 
+
+        const student = await Student.findById(id) // - [ ] What does .find() do?
+        return response.status(200).json(student);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+        
+    }
+});
+
+
 
                                             
 mongoose // this block isn't running. Is there womething wrong with imports or syntax?
