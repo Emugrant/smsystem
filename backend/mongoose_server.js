@@ -74,6 +74,34 @@ app.get('/student/:id', async (request, response) => { //':' signifies param
     }
 });
 
+// Route to update a student
+app.put('/student-update/:id', async (request, response) => {
+    try{
+        if(
+            !request.body.name || // '!' = not, '||' = or
+            !request.body.email ||
+            !request.body.course
+        ) {
+        return response.status(400).send({
+            message: 'Send all required fields: name, email, course'
+        });
+        }
+
+        const { id } = request.params;
+        
+        const result = await Student.findByIdAndUpdate(id, request.body); //no way that's actually a built in function xD
+
+        if (!result) {
+            return response.status(404).json({ message: 'Student not found :('})
+        }
+        
+        return response.status(200).send({ message: 'Student updated successfuly'});
+        
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message })
+    }
+})
 
 
                                             
