@@ -101,6 +101,28 @@ app.put('/student-update/:id', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message })
     }
+});
+
+
+// route to delte student
+
+app.delete('/student-delete/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+
+        const result = await Student.findByIdAndDelete(id); // What library is this function from???
+
+        if (!result) {
+            return response.status(404).json({ message: 'Student not found'})
+        }
+
+        return response.status(200).send({ message: 'Student deleted succesfully'});
+        
+    } catch (error) {
+        console.log(error.message)
+        response.status(500).send({ message: error.message })
+    }
+
 })
 
 
