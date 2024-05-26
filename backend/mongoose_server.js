@@ -1,6 +1,6 @@
 //https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
 //https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
-//18:40 
+//20:10
 
 import express from 'express';
 import mongoose from 'mongoose';
