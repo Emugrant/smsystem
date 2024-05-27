@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
 
-const getAllStudentsEndpoint = '/api/student/all'
-const deleteStudentEndpoint = '/api/students/delete/';
+const getAllStudentsEndpoint = '/student/all'
+const deleteStudentEndpoint = '/student/delete/';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);// create state variable 'students' with initial value of empty array

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
+const updateStudentEndpoint = '/student/update/'
+const createStudentEndpoint = '/student/create'
 
 function AddEditStudent() {
   const [formData, setFormData] = useState({// object
@@ -18,7 +20,7 @@ function AddEditStudent() {
     if (id) { // if 'id' is truthy (not null), indicating edit mode, fetch student details.
       async function fetchStudentDetails() {
         try {
-          const response = await axios.get( datasource + `/api/students/${id}` );   //https://axios-http.com/docs/res_schema
+          const response = await axios.get( datasource + `/student/${id}` );   //https://axios-http.com/docs/res_schema
           console.log(response);                              //Object { _id: "662c4e501393a34f797f7a80", id: "3", name: "Dave1", email: "dave1@gmail.com", course: "Dave Squad" }
           setFormData(response.data);                         // Sets form data to the overlapping response data, excluding datafields not in the state object.
         } catch (error) {
@@ -38,10 +40,10 @@ function AddEditStudent() {
     event.preventDefault(); // prevents the default behavior of form submission, specifically reloading the page
     try { 
       if (id) {//if in edit mode
-        await axios.put(datasource + `/api/students/update-student/${id}`, formData);
+        await axios.put(datasource + updateStudentEndpoint + id, formData);
       } else {
         // Add a new student if in add mode
-        await axios.post(datasource + '/api/students/add-students', formData);
+        await axios.post(datasource + createStudentEndpoint, formData);
       }
       navigate('/'); // Redirect to the student list view
     } catch (error) {

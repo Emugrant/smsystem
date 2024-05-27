@@ -23,13 +23,13 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 // Option 1: Allow ALL Origins with Default of cors()
 app.use(cors())
 // Option 2: Allow Custom Origins
-app.use(
-    cors({
-        origin: 'http://localhost:3001',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'], // - [ ] what is a header in this context?
-    })
-); // only clients with this origin can access the server
+// app.use(
+//     cors({
+//         origin: ['http://localhost:3001',]
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type'], // - [ ] what is a header in this context?
+//     })
+// ); // only clients with this origin can access the server
 
 
 

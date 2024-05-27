@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const deletStudentEndpoint = 'student/delete/'
 
 const DeleteStudent = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const DeleteStudent = () => {
     const deleteStudent = async () => {
       if (window.confirm('Are you sure you want to delete this student?')) {
         try {
-          await axios.delete(`/students/${id}`);
+          await axios.delete( deletStudentEndpoint + id);
           alert('Student deleted successfully');
         } catch (error) {
           console.error("Could not delete student", error);
