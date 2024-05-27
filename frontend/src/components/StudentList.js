@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './frontend.css';
 
 //retrieves student data from defined endpoint using axios.get
 //endpoints corespond to datasource
@@ -28,9 +29,11 @@ const StudentList = () => {
   }, []);// empty array causes to run only on first render
 
   return (
-    <div>
-      <h2>Students List</h2>
-      <Link to="/add">Add New Student</Link>
+    <div class="container">
+      <div class="navBar">
+        <h2>Students List</h2>
+      </div>
+      <div class="centredTable">
       <table>
         <thead>{/* table head */}
           <tr>{/* Table row */}
@@ -71,6 +74,10 @@ const StudentList = () => {
           ))}
         </tbody>
       </table>
+      </div>
+      <div className='buttons'>
+      <Link to="/add">Add New Student</Link>
+      </div>
     </div>
   );
 };
