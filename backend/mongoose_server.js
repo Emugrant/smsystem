@@ -17,6 +17,7 @@ const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mon
 const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 
 const app = express();
+//Body parsing middleware:
 app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
