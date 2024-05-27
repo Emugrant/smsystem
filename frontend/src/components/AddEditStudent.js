@@ -86,9 +86,9 @@ function AddEditStudent() {
               onChange={handleChange}
               required />
           </div>
-          <div class="buttons">
-            <button type="button" onClick={() => navigate('/')}>Cancel</button>
-            <button type="submit">Save Student</button>
+          <div class="buttonDiv">
+            <button type="submit" class="button">Save Student</button>
+            <button type="button" onClick={() => navigate('/')} class="button">Cancel</button>
           </div>
         </form>
       </div>

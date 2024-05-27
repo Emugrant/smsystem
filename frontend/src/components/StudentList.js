@@ -30,12 +30,15 @@ const StudentList = () => {
 
   return (
     <div class="container">
+
       <div class="navBar">
         <h2>Students List</h2>
       </div>
-      <div className='buttons'>
-        <Link to="/add">Add New Student</Link>
+
+      <div className='actionButtons'>
+        <Link to="/add" class="actionButton">Add New Student</Link>
       </div>
+
       <div class="centredDiv">
         <table id="studentTable">
           <thead>{/* table head */}
@@ -54,9 +57,11 @@ const StudentList = () => {
                 <td>{student.email}</td> {/* These values are stored in the 'students' state */}
                 <td>{student.course}</td>
                 <td>
-                  <Link to={`/edit/${student._id}`}>Edit</Link>
-                  &nbsp;|&nbsp;
-                  <button onClick={() => {
+                  <div class="actionButtons">
+                  <Link to={`/edit/${student._id}`}class="actionButton">Edit</Link>
+                  <button
+                    class="actionButton" 
+                    onClick={() => {
                     if (window.confirm('Are you sure you wish to delete this student?')) {
                       axios.delete(datasource + deleteStudentEndpoint + student._id)
 
@@ -69,9 +74,10 @@ const StudentList = () => {
                     .catch(error => {
                       console.error("Could not delete student", error);
                       alert('Failed to delete student: ' + error.message);
-                    });                  
-                }
-                  }}>Delete</button>
+                    });               
+
+                  }}}>Delete</button>
+                  </div>
                 </td>
               </tr>
             ))}

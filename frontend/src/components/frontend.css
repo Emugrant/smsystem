@@ -5,20 +5,26 @@
     background-color: aliceblue;
 }
 
-.buttons {
+.buttonDiv {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     background-color: rgb(123, 160, 192);
+    padding-top: 20px;
 }
 
-.buttons a {
-    background-color: #186ec4; /* Green */
+.button {
+    background-color: #9b9b9b;
     color: white;
-    padding: 15px 32px;
+    padding: 8px 20px;
+    margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
     border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    
 }
     
 
@@ -31,12 +37,13 @@
 }
 
 th{
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     text-align: left;
     background-color: #04AA6D;
     color: white;
 }
+
 
 td, th {
     border: 3px solid grey;
@@ -45,8 +52,39 @@ tr:nth-child(even){background-color: #f2f2f2;}
 tr:hover {background-color: #d6d6d6;}
 
 
+.actionButton {
+    background-color: #9b9b9b;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    
+}
+    .actionButton:hover{
+        background-color: #04AA6D;
+    }
+
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
+
+
 #studentTable {
     border-collapse: collapse;
     width: 100%;
 }
 
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
