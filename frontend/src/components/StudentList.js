@@ -37,7 +37,7 @@ const StudentList = () => {
         <Link to="/add">Add New Student</Link>
       </div>
       <div class="centredDiv">
-        <table>
+        <table id="studentTable">
           <thead>{/* table head */}
             <tr>{/* Table row */}
               <th>Name</th>{/* Table header cell*/}
