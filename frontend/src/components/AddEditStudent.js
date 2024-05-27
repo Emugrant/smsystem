@@ -53,40 +53,45 @@ function AddEditStudent() {
 
   return (
     <div>
-       <h2>{id ? 'Edit' : 'Add'} Student</h2> 
-       {/* <h2>condition ?(conditional operator) expressionIfTruthy : expressionIfFalsy </h2> */}
-       
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required />
-        </div>
-        <div>
-          <label>Course:</label>
-          <input
-            type="text"
-            name="course"
-            value={formData.course}
-            onChange={handleChange}
-            required />
-        </div>
-        <button type="submit">Save Student</button>
-      </form>
-      <button type="button" onClick={() => navigate('/')}>Student List</button>
+      <div class="navBar">
+        <h2>{id ? 'Edit' : 'Add'} Student</h2> 
+        {/* <h2>condition ?(conditional operator) expressionIfTruthy : expressionIfFalsy </h2> */}
+      </div>
+      <div class="centredDiv">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required />
+          </div>
+          <div>
+            <label>Course:</label>
+            <input
+              type="text"
+              name="course"
+              value={formData.course}
+              onChange={handleChange}
+              required />
+          </div>
+          <div class="buttons">
+            <button type="button" onClick={() => navigate('/')}>Cancel</button>
+            <button type="submit">Save Student</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

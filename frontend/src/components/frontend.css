@@ -5,16 +5,17 @@
     background-color: aliceblue;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: rgb(123, 160, 192);
 }
 
-.centredTable {
+.centredDiv {
     display: flex;
     justify-content: center; 
     align-items: center;     
     background-color: rgb(254, 233, 225);   
+    padding:2%;
   }

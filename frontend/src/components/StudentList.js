@@ -33,50 +33,50 @@ const StudentList = () => {
       <div class="navBar">
         <h2>Students List</h2>
       </div>
-      <div class="centredTable">
-      <table>
-        <thead>{/* table head */}
-          <tr>{/* Table row */}
-            <th>Name</th>{/* Table header cell*/}
-            <th>Email</th>
-            <th>Course</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => ( // .map() transforms each element in an array using a function you provide and returns a new array containing the transformed elements.
-            // 'student' is the current element being processed in the array (i)
-            <tr key={student._id}> {/* Each child in react needs a unique key prop */}
-              <td>{student.name}</td>{/* Table data cell */}
-              <td>{student.email}</td> {/* These values are stored in the 'students' state */}
-              <td>{student.course}</td>
-              <td>
-                <Link to={`/edit/${student._id}`}>Edit</Link>
-                &nbsp;|&nbsp;
-                <button onClick={() => {
-                  if (window.confirm('Are you sure you wish to delete this student?')) {
-                    axios.delete(datasource + deleteStudentEndpoint + student._id)
-
-                  .then(() => {
-                    const updatedStudents = students.filter(studentObject => studentObject._id !== student._id); // filter() is used to create a new array filled with elements 
-                    setStudents(updatedStudents);                                                                // that pass a specific test implemented by a provided function (for i in n...)
-                    alert('Student deleted successfully');                                                       // studentObject is the current element being processed in the array (i)
-                  })
-                
-                  .catch(error => {
-                    console.error("Could not delete student", error);
-                    alert('Failed to delete student: ' + error.message);
-                  });                  
-              }
-                }}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      </div>
       <div className='buttons'>
-      <Link to="/add">Add New Student</Link>
+        <Link to="/add">Add New Student</Link>
+      </div>
+      <div class="centredDiv">
+        <table>
+          <thead>{/* table head */}
+            <tr>{/* Table row */}
+              <th>Name</th>{/* Table header cell*/}
+              <th>Email</th>
+              <th>Course</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => ( // .map() transforms each element in an array using a function you provide and returns a new array containing the transformed elements.
+              // 'student' is the current element being processed in the array (i)
+              <tr key={student._id}> {/* Each child in react needs a unique key prop */}
+                <td>{student.name}</td>{/* Table data cell */}
+                <td>{student.email}</td> {/* These values are stored in the 'students' state */}
+                <td>{student.course}</td>
+                <td>
+                  <Link to={`/edit/${student._id}`}>Edit</Link>
+                  &nbsp;|&nbsp;
+                  <button onClick={() => {
+                    if (window.confirm('Are you sure you wish to delete this student?')) {
+                      axios.delete(datasource + deleteStudentEndpoint + student._id)
+
+                    .then(() => {
+                      const updatedStudents = students.filter(studentObject => studentObject._id !== student._id); // filter() is used to create a new array filled with elements 
+                      setStudents(updatedStudents);                                                                // that pass a specific test implemented by a provided function (for i in n...)
+                      alert('Student deleted successfully');                                                       // studentObject is the current element being processed in the array (i)
+                    })
+                  
+                    .catch(error => {
+                      console.error("Could not delete student", error);
+                      alert('Failed to delete student: ' + error.message);
+                    });                  
+                }
+                  }}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
