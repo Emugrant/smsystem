@@ -43,7 +43,7 @@ app.get('/', (request, response) => {
 
 
 // Route to Create Student
-app.post('/students', async (request, response) => {
+app.post('/student/create', async (request, response) => {
     try {
         if(
             !request.body.name || // '!' =665098321c8b43052e612b5a not, '||' = or
@@ -71,7 +71,7 @@ app.post('/students', async (request, response) => {
 })
 
 // get all students
-app.get('/students', async (request, response) => { 
+app.get('/student/all', async (request, response) => { 
     try {
         const students = await Student.find();
         return response.status(200).json(students);
@@ -96,7 +96,7 @@ app.get('/student/:id', async (request, response) => { //':' signifies param
 });
 
 // Route to update a student
-app.put('/student-update/:id', async (request, response) => {
+app.put('/student/update/:id', async (request, response) => {
     try{
         if(
             !request.body.name || // '!' = not, '||' = or
@@ -126,8 +126,7 @@ app.put('/student-update/:id', async (request, response) => {
 
 
 // route to delte student
-
-app.delete('/student-delete/:id', async (request, response) => {
+app.delete('/student/delete/:id', async (request, response) => {
     try {
         const { id } = request.params;
 

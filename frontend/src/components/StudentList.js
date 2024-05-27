@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 const datasource = 'http://localhost:3001';
 
-const getAllStudentsEndpoint = '/api/students/all-students'
-const deleteStudentEndpoint = '/api/students/delete-students/';
+const getAllStudentsEndpoint = '/api/student/all'
+const deleteStudentEndpoint = '/api/students/delete/';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);// create state variable 'students' with initial value of empty array
@@ -16,9 +16,9 @@ const StudentList = () => {
   useEffect(() => { // allows you to preform side functions, runs on every render
     const fetchStudents = async () => {// async keyword means that function will always return a promise(try and catch, return value or error)
       try {
-        const response = await axios.get(datasource + getAllStudentsEndpoint); // async HTTP GET request to '/students' endpoint using axios.
-                                                      // 'await' keyword is used to pause execution until e resolved by 'axios.get()' or is rejected
-                                                      // once promise is resolved, server response stored in variable 'response'
+        const response = await axios.get(datasource + getAllStudentsEndpoint);
+        // 'await' keyword is used to pause execution until e resolved by 'axios.get()' or is rejected
+        // once promise is resolved, server response stored in variable 'response'
         setStudents(response.data);// sets useState array to value of the data
       } catch (error) {
         console.error("Could not fetch students", error);
