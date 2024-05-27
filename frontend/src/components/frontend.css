@@ -26,6 +26,10 @@
     display: inline-block;
     
 }
+
+.button:hover {
+    background-color: #04AA6D;
+}
     
 
 .centredDiv {
