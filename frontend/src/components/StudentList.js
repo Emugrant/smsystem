@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './frontend.css';
 
-//retrieves student data from defined endpoint using axios.get
-//endpoints corespond to datasource
 
 const datasource = 'http://localhost:3001';
 
@@ -12,16 +10,14 @@ const getAllStudentsEndpoint = '/student/all'
 const deleteStudentEndpoint = '/student/delete/';
 
 const StudentList = () => {
-  const [students, setStudents] = useState([]);// create state variable 'students' with initial value of empty array
+  const [students, setStudents] = useState([]); // create state variable 'students' with initial value of empty array
 
-  useEffect(() => { // allows you to preform side functions, runs on every render
-    const fetchStudents = async () => {// async keyword means that function will always return a promise(try and catch, return value or error)
+  useEffect(() => {                                 // allows you to preform side functions, runs on every render
+    const fetchStudents = async () => {             // async keyword means that function will always return a promise (try and catch, return value or error)
       try {
-        const response = await axios.get(datasource + getAllStudentsEndpoint);
-        // 'await' keyword is used to pause execution until e resolved by 'axios.get()' or is rejected
-        // once promise is resolved, server response stored in variable 'response'
-        setStudents(response.data);// sets useState array to value of the data
-      } catch (error) {
+        const response = await axios.get(datasource + getAllStudentsEndpoint);  // 'await' keyword is used to pause execution until e resolved by 'axios.get()' or is rejected                                                    
+        setStudents(response.data);                                             // once promise is resolved, server response stored in variable 'response'                 
+      } catch (error) {                                                         
         console.error("Could not fetch students", error);
       }
     };
@@ -35,7 +31,7 @@ const StudentList = () => {
         <h2>Students List</h2>
       </div>
 
-      <div className='actionButtons'>
+      <div class='actionButtons'>
         <Link to="/add" class="actionButton">Add New Student</Link>
       </div>
 

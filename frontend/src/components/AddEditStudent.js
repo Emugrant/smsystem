@@ -12,6 +12,7 @@ function AddEditStudent() {
     email: '',
     course: ''
   });
+
   const { id } = useParams(); //access current route (url) and grabs the id param 
   const navigate = useNavigate(); //change route
 
@@ -21,10 +22,10 @@ function AddEditStudent() {
       async function fetchStudentDetails() {
         try {
           const response = await axios.get( datasource + `/student/${id}` );   //https://axios-http.com/docs/res_schema
-          console.log(response);                              //Object { _id: "662c4e501393a34f797f7a80", id: "3", name: "Dave1", email: "dave1@gmail.com", course: "Dave Squad" }
-          setFormData(response.data);                         // Sets form data to the overlapping response data, excluding datafields not in the state object.
+          console.log(response);                              
+          setFormData(response.data);                               // Sets form data to the overlapping response data, excluding datafields not in the state object.
         } catch (error) {
-          console.error("Could not fetch student details", error); // 'consle.error()' instead of 'console.log' because error is red ;)
+          console.error("Could not fetch student details", error);  // 'consle.error()' instead of 'console.log' because error is red ;)
         }
       }
       fetchStudentDetails();
@@ -45,7 +46,7 @@ function AddEditStudent() {
         // Add a new student if in add mode
         await axios.post(datasource + createStudentEndpoint, formData);
       }
-      navigate('/'); // Redirect to the student list view
+      navigate('/'); 
     } catch (error) {
       console.error("Could not save student", error);
     }

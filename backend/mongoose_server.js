@@ -1,25 +1,21 @@
-//https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/
-//https://www.youtube.com/watch?v=-42K44A1oMA&t=784s
-//20:10
-
 import cors from 'cors'; // middleware for handling CORS POLICY
 import express from 'express';
 import mongoose from 'mongoose';
 import { Student } from './models/studentModel.js';
-
-//Cross-Origin Resource sharing policy. Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
-// server checks if request is permitted or not by access information (Origins, Methods, Headers)
-// 24:12
-
 
 const port = 3001;
 const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 
 const app = express();
+
 //Body parsing middleware:
-app.use(express.json()); // This tells the Express application to use middleware that automatically parses JSON formatted request bodies.
+app.use(express.json()); // This tells the Express application to automatically parse JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
+//Cross-Origin Resource sharing policy. Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
+// server checks if request is permitted or not by access information (Origins, Methods, Headers)
 
 // Option 1: Allow ALL Origins with Default of cors()
 app.use(cors())
@@ -33,21 +29,11 @@ app.use(cors())
 // ); // only clients with this origin can access the server
 
 
-
-// - [ ]  Industry practice is to have routes in their own file inside of their own folder
-    // - [ ] Optionally move these routes '20:13'. This is becomes more nessaccary with more database tables
-
-app.get('/', (request, response) => {
-    console.log(request);
-    return response.status(234).send('Welcome to MERN Stack Tutorial');
-});
-
-
 // Route to Create Student
 app.post('/student/create', async (request, response) => {
     try {
         if(
-            !request.body.name || // '!' =665098321c8b43052e612b5a not, '||' = or
+            !request.body.name || // '!' = not, '||' = or
             !request.body.email ||
             !request.body.course
         ) {
