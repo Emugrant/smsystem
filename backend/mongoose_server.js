@@ -1,11 +1,11 @@
-import cors from 'cors'; // middleware for handling CORS POLICY
+import cors from 'cors'; // middleware for handling CORS POLICY: CrossOriginResourceSharing Policy restricts webpage requests to alternate domains
 import express from 'express';
 import mongoose from 'mongoose';
 import { Student } from './models/studentModel.js';
 
 const port = 3001;
-const uri = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
-const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; //username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
+const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; 
+// username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 
 const app = express();
 
@@ -14,11 +14,13 @@ app.use(express.json()); // This tells the Express application to automatically 
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
-//Cross-Origin Resource sharing policy. Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
+// # Cross-Origin Resource sharing policy. 
+// CORS Policy Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
 // server checks if request is permitted or not by access information (Origins, Methods, Headers)
 
-// Option 1: Allow ALL Origins with Default of cors()
+// Option 1: Allow ALL Origins with Default of cors():
 app.use(cors())
+
 // Option 2: Allow Custom Origins
 // app.use(
 //     cors({
@@ -28,6 +30,10 @@ app.use(cors())
 //     })
 // ); // only clients with this origin can access the server
 
+
+// Express routes:
+
+// Documentation: http://expressjs.com/en/starter/basic-routing.html
 
 // Route to Create Student
 app.post('/student/create', async (request, response) => {
