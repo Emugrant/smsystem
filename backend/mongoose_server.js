@@ -13,33 +13,31 @@ const app = express();
 app.use(express.json()); // This tells the Express application to automatically parse JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-
-// # Cross-Origin Resource sharing policy. 
 // CORS Policy Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
 // server checks if request is permitted or not by access information (Origins, Methods, Headers)
 
 // Option 1: Allow ALL Origins with Default of cors():
 app.use(cors())
 
-// Option 2: Allow Custom Origins
-// app.use(
-//     cors({
-//         origin: ['http://localhost:3001',]
-//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//         allowedHeaders: ['Content-Type'], // - [ ] what is a header in this context?
-//     })
-// ); // only clients with this origin can access the server
+// - [ ] Why doesn't this work???
+// // Option 2: Allow Custom Origins 
+//     app.use(
+//         cors({
+//             origin: ['http://localhost:3001',]
+//             methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//             allowedHeaders: ['Content-Type'], // - [ ] what is a header in this context?
+//         })
+//     ); // only clients with this origin can access the server
 
 
-// Express routes:
 
-// Documentation: http://expressjs.com/en/starter/basic-routing.html
+// Express routes: http://expressjs.com/en/starter/basic-routing.html
 
 // Route to Create Student
 app.post('/student/create', async (request, response) => {
     try {
         if(
-            !request.body.name || // '!' = not, '||' = or
+            !request.body.name  || // '!' = not, '||' = or
             !request.body.email ||
             !request.body.course
         ) {
