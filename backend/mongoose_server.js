@@ -3,7 +3,7 @@ import express from 'express'; // Express is used to handle HTTP requests and re
 import mongoose from 'mongoose'; // Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 import { Student } from './models/studentModel.js'; // Importing the Student model from the studentModel.js file in the models folder 
 
-const port = 3001; 
+const port = 3001;
 const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cluster0.isp2kui.mongodb.net/studentmanagementsystem?retryWrites=true&w=majority&appName=Cluster0"; 
 // username: gazellehunter24//password: f7y2YWbvDzCqiB4V//cluster0: isp2kui.mongodb.net
 
