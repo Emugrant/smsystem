@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './frontend.css';
 
-
+// Should be environment variables
 const datasource = 'http://localhost:3001';
-
 const getAllStudentsEndpoint = '/student/all'
 const deleteStudentEndpoint = '/student/delete/';
 
