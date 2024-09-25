@@ -1,4 +1,3 @@
-import cors from 'cors'; // middleware for handling CORS POLICY: CrossOriginResourceSharing Policy restricts webpage requests to alternate domains
 import express from 'express'; // Express is used to handle HTTP requests and responses in Node.js
 import mongoose from 'mongoose'; // Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 import { Student } from './models/studentModel.js'; // Importing the Student model from the studentModel.js file in the models folder 
@@ -12,23 +11,6 @@ const app = express();
 //Body parsing middleware:
 app.use(express.json()); // This tells the Express application to automatically parse JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-// CORS Policy Restricts ability of webpage to make requests to a different domain. Prevents unauthroised Cross-Origin access to a resource or service. 
-// server checks if request is permitted or not by access information (Origins, Methods, Headers)
-
-// Option 1: Allow ALL Origins with Default of cors():
-app.use(cors())
-
-// - [ ] Why doesn't this work???
-// // Option 2: Allow Custom Origins 
-//     app.use(
-//         cors({
-//             origin: ['http://localhost:3001',]
-//             methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//             allowedHeaders: ['Content-Type'], // - [ ] what is a header in this context?
-//         })
-//     ); // only clients with this origin can access the server
-
 
 
 // Express routes: http://expressjs.com/en/starter/basic-routing.html
