@@ -26,13 +26,3 @@ export default Student;
 
 // const student1 = new Student({ name: 'John Doe', email: 'example@gmail.com', course: 'Computer Science' });
 
-
-
-// studentSchema.methods.getStudentName = function () {
-//     return this.name;
-// };
-
-// studentSchema.methods.getStudentName(student1);
-
-// student1.save(); // save the student1 document to the database
-
