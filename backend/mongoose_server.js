@@ -1,3 +1,4 @@
+import cors from 'cors'; // Import the cors package
 import express from 'express'; // Express is used to handle HTTP requests and responses in Node.js
 import mongoose from 'mongoose'; // Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 import { Student } from './models/studentModel.js'; // Importing the Student model from the studentModel.js file in the models folder 
@@ -9,6 +10,7 @@ const uriWithCollectionName = "mongodb+srv://gazellehunter24:f7y2YWbvDzCqiB4V@cl
 
 const app = express();
 //Body parsing middleware:
+app.use(cors());
 app.use(express.json()); // This tells the Express application to automatically parse JSON formatted request bodies.
 app.use(express.urlencoded({ extended: true })); // allows to parse the URL-encoded data with the querystring library, enabling us to handle more complex data structures.
 
