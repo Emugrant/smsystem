@@ -1,5 +1,5 @@
 # Description
-The following project is a fullstack web application that performs CRUD operations on our database using a REST API. The purpose of this application is to manage students in a school's database, allowing users to add, edit, update, and delete a student's information seamlessly.
+The following project is a fullstack web application that performs CRUD operations on a database using a REST API. The purpose of this application is to manage students in a school's database, allowing users to add, edit, update, and delete a student's information seamlessly.
 
 ## Technologies Used
 This application uses the MERN stack.
